@@ -7,40 +7,10 @@ Original file is located at
     https://colab.research.google.com/drive/19MGoC3S4IV2oIEU4IOn2lSCYShfqTI7j
 """
 
-from sklearn.linear_model import LogisticRegression
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from sklearn.multioutput import MultiOutputClassifier
-from sklearn import svm
-from sklearn.neural_network import MLPClassifier
-from sklearn.pipeline import Pipeline
-import pandas as pd
-import numpy as np
-import neattext.functions as nfx
-import nltk
-
-df = pd.read_csv("Aspect_clean.csv",on_bad_lines='skip', encoding= 'unicode_escape',delimiter=';')
-
-for i in df:
-  i=i.lower()
-
-df['Review'] = df['Review'].apply(nfx.remove_punctuations)
-df['Review'] = df['Review'].apply(nfx.remove_stopwords)
-df['Review'] = df['Review'].apply(nfx.remove_multiple_spaces)
-
-Xfeatures = df['Review']
-ylabels = df[['Product quality','Price','Service Quality','Delivery quality']]
-x_train,x_test,y_train,y_test = train_test_split(Xfeatures,ylabels,test_size=0.3,random_state=7)
-pipe_lr = Pipeline(steps=[('cv',CountVectorizer()),
-                          ('lr_multi',MultiOutputClassifier(LogisticRegression(max_iter=3000)))])
-
-pipe_lr.fit(x_train,y_train)
-pipe_lr.score(x_test,y_test)
-
 import streamlit as st
+import FYPmodel as model
 st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
 st.label("Enter the review you want")
 input = st.text_input("")
-result = pipe_lr.predict([input])
+result = model.pipe_lr.predict([input])
 st.text(result)
