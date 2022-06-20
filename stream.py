@@ -9,7 +9,7 @@ Original file is located at
 
 import streamlit as st
 import pickle
-model = pickle.load(open('aspectModel','rb'))
+model = pickle.load(open('aspectModel.pkl','rb'))
 st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
 input = st.text_input("Enter the review you want")
 result = model.predict([input])
