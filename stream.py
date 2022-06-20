@@ -9,7 +9,8 @@ Original file is located at
 
 import streamlit as st
 st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
-st.label("Enter the review you want")
-input = st.text_input("")
+input = st.text_input("Enter the review you want")
 result = pipe_lr.predict([input])
-st.text(result)
+btn = st.button("Predict")
+if btn:
+  st.text(result)
