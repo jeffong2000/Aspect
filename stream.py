@@ -7,9 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/19MGoC3S4IV2oIEU4IOn2lSCYShfqTI7j
 """
 
-!pip install sklearn
-!pip install neattext
-
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
