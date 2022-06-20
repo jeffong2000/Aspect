@@ -8,9 +8,8 @@ Original file is located at
 """
 
 import streamlit as st
-import fypmodel as model
 st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
 st.label("Enter the review you want")
 input = st.text_input("")
-result = model.pipe_lr.predict([input])
+result = pipe_lr.predict([input])
 st.text(result)
