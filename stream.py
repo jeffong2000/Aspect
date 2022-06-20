@@ -8,9 +8,11 @@ Original file is located at
 """
 
 import streamlit as st
+import pickle
+model = pickle.load(open('aspectModel','rb'))
 st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
 input = st.text_input("Enter the review you want")
-result = pipe_lr.predict([input])
+result = model.predict([input])
 btn = st.button("Predict")
 if btn:
   st.text(result)
