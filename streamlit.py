@@ -11,7 +11,6 @@ import streamlit as st
 import pickle
 import pandas as pd
 import nltk
-import spacy_streamlit
 import spacy
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pkg_resources
