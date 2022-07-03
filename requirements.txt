@@ -1,3 +1,6 @@
 scikit-learn
 symspellpy
 spacy
+nltk
+pandas
+numpy
