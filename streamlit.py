@@ -320,7 +320,7 @@ def spell_check(aspect):
   return aspect
 
 #Main function
-nlp = spacy.load('en')
+nlp = spacy.load('en_core_web_sm')
 sid = SentimentIntensityAnalyzer()
 model = pickle.load(open('aspectModel.pkl','rb'))
 st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
