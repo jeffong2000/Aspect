@@ -321,7 +321,7 @@ def spell_check(aspect):
 #Main function
 nlp = spacy.load('en_core_web_sm')
 sid = SentimentIntensityAnalyzer()
-model = pickle.load(open('aspectModel.pkl','rb'))
+model = pickle.load(open('aspectModel1.pkl','rb'))
 st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
 input = st.text_input("Enter the review you want")
 result = model.predict([input])
