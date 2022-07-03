@@ -15,7 +15,7 @@ import spacy
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pkg_resources
 from symspellpy import SymSpell, Verbosity
-
+nltk.download('vader_lexicon')
 
 def clean_data(df):
 
