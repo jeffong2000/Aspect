@@ -15,7 +15,7 @@ import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pkg_resources
 from symspellpy import SymSpell, Verbosity
-python -m spacy download en
+
 
 def clean_data(df):
 
