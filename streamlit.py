@@ -10,7 +10,6 @@ Original file is located at
 import streamlit as st
 import pickle
 import pandas as pd
-import spacy
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pkg_resources
