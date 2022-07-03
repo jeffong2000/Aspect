@@ -11,7 +11,6 @@ import streamlit as st
 import pickle
 import pandas as pd
 import nltk
-import spacy_streamlit
 import spacy
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import pkg_resources
@@ -320,7 +319,7 @@ def spell_check(aspect):
   return aspect
 
 #Main function
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('en')
 sid = SentimentIntensityAnalyzer()
 model = pickle.load(open('aspectModel.pkl','rb'))
 st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
