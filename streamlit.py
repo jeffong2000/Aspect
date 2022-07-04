@@ -432,4 +432,4 @@ if uploaded_file is not None:
         plt.legend()
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
-        st.success("Analysis successful")
+    st.success("Analysis successful")
