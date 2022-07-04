@@ -343,11 +343,11 @@ if btn:
                 "service","staff","seller","reply","follow","followup","gift",'coordinating']):
       
           st.subheader(i[0]+"\t|\t"+i[1])
-  st.text(result)
+
 col1, col2, col3,col4 = st.columns(4)
 for res in result:
     col1.metric("Product quality", res[0])
     col2.metric("Price", res[1])
     col3.metric("Service quality", res[2])
     col4.metric("Delivery quality", res[3])
-  st.success("Aspect and sentiment is found")
+st.success("Aspect and sentiment is found")
