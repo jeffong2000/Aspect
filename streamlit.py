@@ -346,10 +346,10 @@ if btn:
       if(i%2==1):
           with left_col:
                 st.subheader(i[0]+"\n"+i[1])
-                i++
+                i=i+1
       else:
           with right_col:
                 st.subheader(i[0]+"\n"+i[1])  
-                i++
+                i=i+1
       st.text("Aspect: "+i[0]+" Sentiment: "+i[1])
   st.text(result)
