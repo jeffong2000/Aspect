@@ -326,7 +326,9 @@ st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
 input = st.text_input("Enter the review you want")
 result = model.predict([input])
 btn = st.button("Predict")
+
 if btn:
+  st.header("Aspect extracted:")
   dic = (apply_extraction(input,nlp,sid)) #Dependency parsing
   # for x in dic['aspect_pairs']:
   #   corrected_aspect = spell_check(x[0])
@@ -343,7 +345,7 @@ if btn:
                 "service","staff","seller","reply","follow","followup","gift",'coordinating']):
       
           st.subheader(i[0]+"\t|\t"+i[1])
-
+st.markdown("###")
 col1, col2, col3,col4 = st.columns(4)
 for res in result:
     col1.metric("Product quality", res[0])
