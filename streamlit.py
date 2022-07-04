@@ -342,8 +342,12 @@ if btn:
                 "delivery","deliveryquality","time","deliverytime","condition","receive","received","packed","packing","package","shipping","value","price","buy","purchase","order","deal",
                 "service","staff","seller","reply","follow","followup","gift",'coordinating']):
       left_col, right_col = st.columns(2)
-      with left_col:
-            st.subheader(i[0]+"\n"+i[1])
-      st.metric(label=i[0], value=i[1])
+      i=1
+      if(i%2==1):
+          with left_col:
+                st.subheader(i[0]+"\n"+i[1])
+      else:
+          with right_col:
+                st.subheader(i[0]+"\n"+i[1])  
       st.text("Aspect: "+i[0]+" Sentiment: "+i[1])
   st.text(result)
