@@ -354,8 +354,11 @@ if btn:
     col3.metric("Service quality", res[2])
     col4.metric("Delivery quality", res[3])
   st.success("Aspect and sentiment is found")
+st.markdown("***")
+st.markdown("***")
+st.markdown("***")
 uploaded_file = st.file_uploader("Upload the review dataset")
-click = st.button("Extracy")
+click = st.button("Extract")
 if uploaded_file is not None:
   if click:
     test = pd.read_csv(uploaded_file,on_bad_lines='skip', encoding= 'unicode_escape',delimiter=';')
