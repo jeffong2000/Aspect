@@ -342,7 +342,7 @@ if btn:
                 "delivery","deliveryquality","time","deliverytime","condition","receive","received","packed","packing","package","shipping","value","price","buy","purchase","order","deal",
                 "service","staff","seller","reply","follow","followup","gift",'coordinating']):
       
-          st.subheader(i[0]+"\n"+i[1])
+          st.subheader(i[0]+"\t|\t"+i[1])
 
   st.text(result)
   st.success("Aspect and sentiment is found")
