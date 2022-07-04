@@ -342,10 +342,10 @@ if uploaded_file is not None:
     print(quality_polar)
     mylabels = ["Positive", "Negative", "Neutral"]
     color = ["green","red","darkgrey"]
-    plt.pie(quality_polar, labels = mylabels[0:len(pred["Product quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Product quality"].value_counts())-1])
+    fig, ax =plt.pie(quality_polar, labels = mylabels[0:len(pred["Product quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Product quality"].value_counts())-1])
     plt.title("Polarity of Product quality Aspect")
     plt.legend()
-    st.pyplot()
+    st.pyplot(fig)
 
     price=[]
     i=0
@@ -356,10 +356,10 @@ if uploaded_file is not None:
     print(price_polar)
     mylabels = ["Positive", "Negative", "Neutral"]
     color = ["green","red","darkgrey"]
-    plt.pie(price_polar, labels = mylabels[0:len(pred["Price"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Price"].value_counts())-1])
+    fig, ax =plt.pie(price_polar, labels = mylabels[0:len(pred["Price"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Price"].value_counts())-1])
     plt.title("Polarity of Price Aspect")
     plt.legend()
-    st.pyplot()
+    st.pyplot(fig)
 
     service=[]
     i=0
@@ -370,10 +370,10 @@ if uploaded_file is not None:
     print(pred["Service Quality"].value_counts())
     mylabels = ["Positive", "Negative", "Neutral"]
     color = ["green","red","darkgrey"]
-    plt.pie(service_polar, labels = mylabels[0:len(pred["Service Quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Service Quality"].value_counts())-1])
+    fig, ax =plt.pie(service_polar, labels = mylabels[0:len(pred["Service Quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Service Quality"].value_counts())-1])
     plt.title("Polarity of Service Aspect")
     plt.legend()
-    st.pyplot()
+    st.pyplot(fig)
 
     delivery=[]
     i=0
@@ -384,7 +384,7 @@ if uploaded_file is not None:
     print(delivery_polar)
     mylabels = ["Positive", "Negative", "Neutral"]
     color = ["green","red","darkgrey"]
-    plt.pie(delivery_polar, labels = mylabels[0:len(pred["Delivery quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Delivery quality"].value_counts())-1])
+    fig, ax =plt.pie(delivery_polar, labels = mylabels[0:len(pred["Delivery quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Delivery quality"].value_counts())-1])
     plt.title("Polarity of Delivery Aspect")
     plt.legend()
-    st.pyplot()
+    st.pyplot(fig)
