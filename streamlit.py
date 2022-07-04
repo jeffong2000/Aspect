@@ -344,7 +344,7 @@ if btn:
       
           st.subheader(i[0]+"\n"+i[1])
 
-      st.text("Aspect: "+i[0]+" Sentiment: "+i[1])
+    st.text("Aspect: "+i[0]+" Sentiment: "+i[1])
   
   st.text(result)
   st.success("Aspect and sentiment is found")
