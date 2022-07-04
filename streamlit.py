@@ -354,7 +354,10 @@ if btn:
     col3.metric("Service quality", res[2])
     col4.metric("Delivery quality", res[3])
   st.success("Aspect and sentiment is found")
+write("")
 st.markdown("***")
+write("")
+write("")
 uploaded_file = st.file_uploader("Upload the review dataset")
 click = st.button("Extract")
 if uploaded_file is not None:
