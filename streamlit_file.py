@@ -345,7 +345,7 @@ if uploaded_file is not None:
     plt.pie(quality_polar, labels = mylabels[0:len(pred["Product quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Product quality"].value_counts())-1])
     plt.title("Polarity of Product quality Aspect")
     plt.legend()
-    st.pyplot(show_deprecation_warning=False)
+    st.pyplot()
 
     price=[]
     i=0
@@ -359,7 +359,7 @@ if uploaded_file is not None:
     plt.pie(price_polar, labels = mylabels[0:len(pred["Price"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Price"].value_counts())-1])
     plt.title("Polarity of Price Aspect")
     plt.legend()
-    st.pyplot(show_deprecation_warning=False)
+    st.pyplot()
 
     service=[]
     i=0
@@ -373,7 +373,7 @@ if uploaded_file is not None:
     plt.pie(service_polar, labels = mylabels[0:len(pred["Service Quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Service Quality"].value_counts())-1])
     plt.title("Polarity of Service Aspect")
     plt.legend()
-    st.pyplot(show_deprecation_warning=False)
+    st.pyplot()
 
     delivery=[]
     i=0
@@ -387,4 +387,4 @@ if uploaded_file is not None:
     plt.pie(delivery_polar, labels = mylabels[0:len(pred["Delivery quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Delivery quality"].value_counts())-1])
     plt.title("Polarity of Delivery Aspect")
     plt.legend()
-    st.pyplot(show_deprecation_warning=False)
+    st.pyplot()
