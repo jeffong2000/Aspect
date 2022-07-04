@@ -332,7 +332,7 @@ if uploaded_file is not None:
     test = pd.read_csv(uploaded_file,on_bad_lines='skip', encoding= 'unicode_escape',delimiter=';')
     pred = model.predict(test.iloc[:,0].to_numpy())
     pred = pd.DataFrame(pred, columns = ['Product quality','Price','Service Quality','Delivery quality'])
-   col1,col2,col3,col4 = st.columns(4)
+    col1,col2,col3,col4 = st.columns(4)
     quality=[]
     i=0
     while i< len(pred["Product quality"].value_counts())-1:
