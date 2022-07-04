@@ -332,7 +332,7 @@ if uploaded_file is not None:
     test = pd.read_csv(uploaded_file,on_bad_lines='skip', encoding= 'unicode_escape',delimiter=';')
     pred = model.predict(test.iloc[:,0].to_numpy())
     pred = pd.DataFrame(pred, columns = ['Product quality','Price','Service Quality','Delivery quality'])
-
+   col1,col2,col3,col4 = st.columns(4)
     quality=[]
     i=0
     while i< len(pred["Product quality"].value_counts())-1:
@@ -342,11 +342,12 @@ if uploaded_file is not None:
     print(quality_polar)
     mylabels = ["Positive", "Negative", "Neutral"]
     color = ["green","red","darkgrey"]
+    plt.figure(figsize=(7,4))
     plt.pie(quality_polar, labels = mylabels[0:len(pred["Product quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Product quality"].value_counts())-1])
     plt.title("Polarity of Product quality Aspect")
     plt.legend()
     st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.pyplot()
+    col1.st.pyplot()
 
     price=[]
     i=0
@@ -357,11 +358,12 @@ if uploaded_file is not None:
     print(price_polar)
     mylabels = ["Positive", "Negative", "Neutral"]
     color = ["green","red","darkgrey"]
+    plt.figure(figsize=(7,4))
     plt.pie(price_polar, labels = mylabels[0:len(pred["Price"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Price"].value_counts())-1])
     plt.title("Polarity of Price Aspect")
     plt.legend()
     st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.pyplot()
+    col2.st.pyplot()
 
     service=[]
     i=0
@@ -372,11 +374,12 @@ if uploaded_file is not None:
     print(pred["Service Quality"].value_counts())
     mylabels = ["Positive", "Negative", "Neutral"]
     color = ["green","red","darkgrey"]
+    plt.figure(figsize=(7,4))
     plt.pie(service_polar, labels = mylabels[0:len(pred["Service Quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Service Quality"].value_counts())-1])
     plt.title("Polarity of Service Aspect")
     plt.legend()
     st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.pyplot()
+    col3.st.pyplot()
 
     delivery=[]
     i=0
@@ -387,8 +390,9 @@ if uploaded_file is not None:
     print(delivery_polar)
     mylabels = ["Positive", "Negative", "Neutral"]
     color = ["green","red","darkgrey"]
+    plt.figure(figsize=(7,4))
     plt.pie(delivery_polar, labels = mylabels[0:len(pred["Delivery quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Delivery quality"].value_counts())-1])
     plt.title("Polarity of Delivery Aspect")
     plt.legend()
     st.set_option('deprecation.showPyplotGlobalUse', False)
-    st.pyplot()
+    col4.st.pyplot()
