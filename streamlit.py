@@ -324,12 +324,13 @@ nlp = spacy.load('en_core_web_sm')
 sid = SentimentIntensityAnalyzer()
 model = pickle.load(open('aspectModel1.pkl','rb'))
 st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
+st.subheader("Aspect-based sentiment analysis by review")
 input = st.text_input("Enter the review you want")
 result = model.predict([input])
 btn = st.button("Predict")
 
 if btn:
-  st.header("Aspect extracted:")
+  st.subheader("Aspect extracted:")
   dic = (apply_extraction(input,nlp,sid)) #Dependency parsing
   # for x in dic['aspect_pairs']:
   #   corrected_aspect = spell_check(x[0])
@@ -358,7 +359,7 @@ st.write("")
 st.markdown("***")
 st.write("")
 st.write("")
-st.subheader("Ecommerce performance summary in every aspect")
+st.subheader("Ecommerce performance analysis in every aspect")
 uploaded_file = st.file_uploader("Upload the review dataset")
 click = st.button("Extract")
 if uploaded_file is not None:
@@ -431,3 +432,4 @@ if uploaded_file is not None:
         plt.legend()
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
+        st.success("Analysis successful")
