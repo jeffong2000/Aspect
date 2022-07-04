@@ -355,9 +355,9 @@ if btn:
     col4.metric("Delivery quality", res[3])
   st.success("Aspect and sentiment is found")
 uploaded_file = st.file_uploader("Upload the review dataset")
+click = st.button("Extracy")
 if uploaded_file is not None:
-  btn = st.button("Predict")
-  if btn:
+  if click:
     test = pd.read_csv(uploaded_file,on_bad_lines='skip', encoding= 'unicode_escape',delimiter=';')
     pred = model.predict(test.iloc[:,0].to_numpy())
     pred = pd.DataFrame(pred, columns = ['Product quality','Price','Service Quality','Delivery quality'])
