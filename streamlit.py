@@ -341,13 +341,10 @@ if btn:
                 "soundrange","batch","recommend","texture","portability","case","audio","system","device","volume","earbuds","bass","pitch","tone","noisecancellation","microphone","grade","experience",
                 "delivery","deliveryquality","time","deliverytime","condition","receive","received","packed","packing","package","shipping","value","price","buy","purchase","order","deal",
                 "service","staff","seller","reply","follow","followup","gift",'coordinating']):
-      left_col, right_col = st.columns(2)
-      x=1
-      if(x%2==1):
-          left_col.st.subheader(i[0]+"\n"+i[1])
-          x=x+1
-      else:
-          right_col.st.subheader(i[0]+"\n"+i[1])  
-          x=x+1
+      
+          st.subheader(i[0]+"\n"+i[1])
+
       st.text("Aspect: "+i[0]+" Sentiment: "+i[1])
+  
   st.text(result)
+  st.success("Aspect and sentiment is found")
