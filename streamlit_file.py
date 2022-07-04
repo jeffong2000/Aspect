@@ -321,17 +321,16 @@ import numpy as np
 
 #Main function
 
-nlp = spacy.load('en_core_web_sm')
-sid = SentimentIntensityAnalyzer()
+# nlp = spacy.load('en_core_web_sm')
+# sid = SentimentIntensityAnalyzer()
 model = pickle.load(open('aspectModel1.pkl','rb'))
 st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
 uploaded_file = st.file_uploader("Upload the review dataset")
 if uploaded_file is not None:
-  result = model.predict([input])
   btn = st.button("Predict")
   if btn:
     test = pd.read_csv(uploaded_file,on_bad_lines='skip', encoding= 'unicode_escape',delimiter=';')
-    pred = pipe_lr.predict(test.iloc[:,0].to_numpy())
+    pred = model.predict(test.iloc[:,0].to_numpy())
     pred = pd.DataFrame(pred, columns = ['Product quality','Price','Service Quality','Delivery quality'])
 
     quality=[]
