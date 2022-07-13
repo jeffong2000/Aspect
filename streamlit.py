@@ -13,7 +13,7 @@ import pandas as pd
 import nltk
 import spacy
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-# import pkg_resources
+import pkg_resources
 from symspellpy import SymSpell, Verbosity
 # nltk.download('vader_lexicon')
 import matplotlib.pyplot as plt
