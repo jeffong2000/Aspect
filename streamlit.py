@@ -439,11 +439,11 @@ if uploaded_file is not None:
     st.write('You selected:', option)
     if (option== 'Product quality'):
         st.dataframe(pred.loc[pred['Product quality']!="-"]) 
-    if (option== 'Price'):
+    elif (option== 'Price'):
         st.dataframe(pred.loc[pred['Price']!="-"]) 
-    if (option== 'Service quality'):
+    elif (option== 'Service quality'):
         st.dataframe(pred.loc[pred['Service Quality']!="-"]) 
-    if (option== 'Delivery'):
+    elif (option== 'Delivery'):
         st.dataframe(pred.loc[pred['Delivery quality']!="-"]) 
     else:
         st.dataframe(pred) 
