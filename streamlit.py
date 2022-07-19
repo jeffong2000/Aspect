@@ -199,13 +199,13 @@ sid = SentimentIntensityAnalyzer()
 model = pickle.load(open('ABSAModel.pkl','rb'))
 st.set_page_config(layout="centered")
 st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
-st.subheader("Aspect-based sentiment analysis by review")
+st.header("Aspect-based sentiment analysis by review")
 input = st.text_input("Enter the review you want")
 result = model.predict([input])
 btn = st.button("Predict")
 
 if btn:
-  st.subheader("Aspect extracted:")
+  st.header("Aspect extracted:")
   dic = (apply_extraction(input,nlp,sid)) #Dependency parsing
   for i in dic['aspect_pairs']:
     if(i[0] in ["item","items","quality","sound","soundquality","design","product","connection","looking","call","headphone","headphones","earphone","earphones",
@@ -216,7 +216,7 @@ if btn:
                 "delivery","deliveryquality","time","deliverytime","condition","receive","received","packed","packing","package","shipping","value","price","buy","purchase","order","deal",
                 "service","staff","seller","reply","follow","followup","gift",'coordinating']):
       
-          st.text(i[0]+"\t|\t"+i[1])
+          st.subheader(i[0]+"\t|\t"+i[1])
   st.markdown("###")
   col1, col2, col3,col4 = st.columns(4)
   for res in result:
@@ -229,7 +229,7 @@ st.write("")
 st.markdown("***")
 st.write("")
 st.write("")
-st.subheader("Ecommerce performance analysis in every aspect")
+st.header("Ecommerce performance analysis in every aspect")
 uploaded_file = st.file_uploader("Upload the review dataset")
 click = st.button("Extract")
 if uploaded_file is not None:
