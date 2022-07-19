@@ -62,15 +62,8 @@ def clean_data(df):
 
 prod_pronouns = ['it','this','they','these']
 
-
-#Dependency parser
 def apply_extraction(row,nlp,sid):
-
-    
-
     doc=nlp(row)
-
-
     ## FIRST RULE OF DEPENDANCY PARSE -
     ## M - Sentiment modifier || A - Aspect
     ## RULE = M is child of A with a relationshio of amod
@@ -103,46 +96,10 @@ def apply_extraction(row,nlp,sid):
 
     ## SECOND RULE OF DEPENDANCY PARSE -
     ## M - Sentiment modifier || A - Aspect
-    #Direct Object - A is a child of something with relationship of nsubj, while
-    # M is a child of the same something with relationship of dobj
-    #Assumption - A verb will have only one NSUBJ and DOBJ
-
-    rule2_pairs = []
-    for token in doc:
-        children = token.children
-        A = "999999"
-        M = "999999"
-        add_neg_pfx = False
-        for child in children :
-            if(child.dep_ == "nsubj" and not child.is_stop):
-                A = child.text
-                # check_spelling(child.text)
-
-            if((child.dep_ == "dobj" and child.pos_ == "ADJ") and not child.is_stop):
-                M = child.text
-                #check_spelling(child.text)
-
-            if(child.dep_ == "neg"):
-                neg_prefix = child.text
-                add_neg_pfx = True
-
-    if (add_neg_pfx and M != "999999"):
-        M = neg_prefix + " " + M
-
-        if(A != "999999" and M != "999999"):
-            rule2_pairs.append((A, M,sid.polarity_scores(M)['compound'],2))
-
-
-    ## THIRD RULE OF DEPENDANCY PARSE -
-    ## M - Sentiment modifier || A - Aspect
     ## Adjectival Complement - A is a child of something with relationship of nsubj, while
     ## M is a child of the same something with relationship of acomp
-    ## Assumption - A verb will have only one NSUBJ and DOBJ
-    ## "The sound of the speakers would be better. The sound of the speakers could be better" - handled using AUX dependency
 
-
-
-    rule3_pairs = []
+    rule2_pairs = []
 
     for token in doc:
 
@@ -153,7 +110,7 @@ def apply_extraction(row,nlp,sid):
         for child in children :
             if(child.dep_ == "nsubj" and not child.is_stop):
                 A = child.text
-                # check_spelling(child.text)
+
 
             if(child.dep_ == "acomp" and not child.is_stop):
                 M = child.text
@@ -169,20 +126,19 @@ def apply_extraction(row,nlp,sid):
 
         if (add_neg_pfx and M != "999999"):
             M = neg_prefix + " " + M
-                #check_spelling(child.text)
+
 
         if(A != "999999" and M != "999999"):
-            rule3_pairs.append((A, M, sid.polarity_scores(M)['compound'],3))
+            rule2_pairs.append((A, M, sid.polarity_scores(M)['compound'],3))
 
-    ## FOURTH RULE OF DEPENDANCY PARSE -
+    ## THIRD RULE OF DEPENDANCY PARSE -
     ## M - Sentiment modifier || A - Aspect
 
     #Adverbial modifier to a passive verb - A is a child of something with relationship of nsubjpass, while
     # M is a child of the same something with relationship of advmod
-
     #Assumption - A verb will have only one NSUBJ and DOBJ
 
-    rule4_pairs = []
+    rule3_pairs = []
     for token in doc:
 
 
@@ -193,7 +149,7 @@ def apply_extraction(row,nlp,sid):
         for child in children :
             if((child.dep_ == "nsubjpass" or child.dep_ == "nsubj") and not child.is_stop):
                 A = child.text
-                # check_spelling(child.text)
+
 
             if(child.dep_ == "advmod" and not child.is_stop):
                 M = child.text
@@ -203,7 +159,7 @@ def apply_extraction(row,nlp,sid):
                         M_hash = child_m.text
                         M = M_hash + " " + child.text
                         break
-                #check_spelling(child.text)
+  
 
             if(child.dep_ == "neg"):
                 neg_prefix = child.text
@@ -213,91 +169,10 @@ def apply_extraction(row,nlp,sid):
             M = neg_prefix + " " + M
 
         if(A != "999999" and M != "999999"):
-            rule4_pairs.append((A, M,sid.polarity_scores(M)['compound'],4)) # )
-
-
-    ## FIFTH RULE OF DEPENDANCY PARSE -
-    ## M - Sentiment modifier || A - Aspect
-
-    #Complement of a copular verb - A is a child of M with relationship of nsubj, while
-    # M has a child with relationship of cop
-
-    #Assumption - A verb will have only one NSUBJ and DOBJ
-
-    rule5_pairs = []
-    for token in doc:
-        children = token.children
-        A = "999999"
-        buf_var = "999999"
-        for child in children :
-            if(child.dep_ == "nsubj" and not child.is_stop):
-                A = child.text
-                # check_spelling(child.text)
-
-            if(child.dep_ == "cop" and not child.is_stop):
-                buf_var = child.text
-                #check_spelling(child.text)
-
-        if(A != "999999" and buf_var != "999999"):
-            rule5_pairs.append((A, token.text,sid.polarity_scores(token.text)['compound'],5))
-
-
-    ## SIXTH RULE OF DEPENDANCY PARSE -
-    ## M - Sentiment modifier || A - Aspect
-    ## Example - "It ok", "ok" is INTJ (interjections like bravo, great etc)
-
-
-    rule6_pairs = []
-    for token in doc:
-        children = token.children
-        A = "999999"
-        M = "999999"
-        if(token.pos_ == "INTJ" and not token.is_stop):
-            for child in children :
-                if(child.dep_ == "nsubj" and not child.is_stop):
-                    A = child.text
-                    M = token.text
-                    # check_spelling(child.text)
-
-        if(A != "999999" and M != "999999"):
-            rule6_pairs.append((A, M,sid.polarity_scores(M)['compound'],6))
-
-
-    ## SEVENTH RULE OF DEPENDANCY PARSE -
-    ## M - Sentiment modifier || A - Aspect
-    ## ATTR - link between a verb like 'be/seem/appear' and its complement
-    ## Example: 'this is garbage' -> (this, garbage)
-
-    rule7_pairs = []
-    for token in doc:
-        children = token.children
-        A = "999999"
-        M = "999999"
-        add_neg_pfx = False
-        for child in children :
-            if(child.dep_ == "nsubj" and not child.is_stop):
-                A = child.text
-                # check_spelling(child.text)
-
-            if((child.dep_ == "attr") and not child.is_stop):
-                M = child.text
-                #check_spelling(child.text)
-
-            if(child.dep_ == "neg"):
-                neg_prefix = child.text
-                add_neg_pfx = True
-
-        if (add_neg_pfx and M != "999999"):
-            M = neg_prefix + " " + M
-
-        if(A != "999999" and M != "999999"):
-            rule7_pairs.append((A, token.text,sid.polarity_scores(token.text)['compound'],7))
-
-
-
+            rule3_pairs.append((A, M,sid.polarity_scores(M)['compound'],4)) # )
     aspects = []
 
-    aspects = rule1_pairs + rule2_pairs + rule3_pairs +rule4_pairs +rule5_pairs + rule6_pairs + rule7_pairs
+    aspects = rule1_pairs + rule2_pairs + rule3_pairs 
 
     # replace all instances of "it", "this" and "they" with "product"
     aspects = [(A,M,P,r) if A not in prod_pronouns else ("product",M,P,r) for A,M,P,r in aspects ]
@@ -322,8 +197,8 @@ def spell_check(aspect):
 nlp = spacy.load('en_core_web_sm')
 sid = SentimentIntensityAnalyzer()
 model = pickle.load(open('ABSAModel.pkl','rb'))
-st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
 st.set_page_config(layout="wide")
+st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
 st.subheader("Aspect-based sentiment analysis by review")
 input = st.text_input("Enter the review you want")
 result = model.predict([input])
@@ -332,11 +207,6 @@ btn = st.button("Predict")
 if btn:
   st.subheader("Aspect extracted:")
   dic = (apply_extraction(input,nlp,sid)) #Dependency parsing
-  # for x in dic['aspect_pairs']:
-  #   corrected_aspect = spell_check(x[0])
-  #   y = list(x)
-  #   y[0]=corrected_aspect
-  #   dic['aspect_pairs'][dic['aspect_pairs'].index(x)] = tuple(y)
   for i in dic['aspect_pairs']:
     if(i[0] in ["item","items","quality","sound","soundquality","design","product","connection","looking","call","headphone","headphones","earphone","earphones",
                   "overall","earpiece","looks","battery","soundclarity","features","feature(s","feature","performance","paired","headset","headsets"
