@@ -323,6 +323,7 @@ nlp = spacy.load('en_core_web_sm')
 sid = SentimentIntensityAnalyzer()
 model = pickle.load(open('ABSAModel.pkl','rb'))
 st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
+st.set_page_config(layout="wide").
 st.subheader("Aspect-based sentiment analysis by review")
 input = st.text_input("Enter the review you want")
 result = model.predict([input])
@@ -404,7 +405,6 @@ if uploaded_file is not None:
         plt.legend()
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
-        st.bar_chart(pred['Delivery quality'].value_counts())
     st.success("Analysis successful")
     st.dataframe(pred)
 
