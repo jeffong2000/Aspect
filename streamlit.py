@@ -323,7 +323,7 @@ nlp = spacy.load('en_core_web_sm')
 sid = SentimentIntensityAnalyzer()
 model = pickle.load(open('ABSAModel.pkl','rb'))
 st.title("Web Based Aspect-based sentiment analysis for earphone and headset")
-st.set_page_config(layout="wide").
+st.set_page_config(layout="wide")
 st.subheader("Aspect-based sentiment analysis by review")
 input = st.text_input("Enter the review you want")
 result = model.predict([input])
