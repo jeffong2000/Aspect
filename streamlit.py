@@ -246,7 +246,6 @@ if uploaded_file is not None:
         count.plot(kind='pie',autopct='%1.2f%%',colors=[colours[key] for key in labels])
         plt.title("Polarity of Product quality Aspect")
         plt.legend()
-        plt.figure(figsize=(6,4))
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
     with col2:
@@ -256,7 +255,6 @@ if uploaded_file is not None:
         count.plot(kind='pie',autopct='%1.2f%%',colors=[colours[key] for key in labels])
         plt.title("Polarity of Price Aspect")
         plt.legend()
-        plt.figure(figsize=(6,4))
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
     with col3: 
@@ -266,7 +264,6 @@ if uploaded_file is not None:
         count.plot(kind='pie',autopct='%1.2f%%',colors=[colours[key] for key in labels])
         plt.title("Polarity of Service Quality Aspect")
         plt.legend()
-        plt.figure(figsize=(6,4))
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
     with col4:
@@ -275,7 +272,6 @@ if uploaded_file is not None:
         labels = count.index.tolist()
         count.plot(kind='pie',autopct='%1.2f%%',colors=[colours[key] for key in labels])
         plt.title("Polarity of Delivery Aspect")
-        plt.figure(figsize=(6,4))
         plt.legend()
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
