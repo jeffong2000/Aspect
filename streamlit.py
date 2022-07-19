@@ -437,7 +437,7 @@ if uploaded_file is not None:
      'Which aspect you want to check',
      ('All','Product quality', 'Price', 'Service quality','Delivery'))
     st.write('You selected:', option)
-switch(option) {
+switch(option) :
     case 'Product quality':
         st.dataframe(pred.loc[pred['Product quality']!="-"]) 
     case 'Price':
@@ -448,5 +448,5 @@ switch(option) {
         st.dataframe(pred.loc[pred['Delivery quality']!="-"]) 
     default:
         st.dataframe(pred) 
-};
+
 
