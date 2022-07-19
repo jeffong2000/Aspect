@@ -366,6 +366,7 @@ if uploaded_file is not None:
     test = pd.read_csv(uploaded_file,on_bad_lines='skip', encoding= 'unicode_escape',delimiter=';')
     pred = model.predict(test.iloc[:,0].to_numpy())
     pred = pd.DataFrame(pred, columns = ['Product quality','Price','Service Quality','Delivery quality'])
+    pred.insert(0,"Review",test.iloc[:,0].to_numpy())
     col1,col2,col3,col4 = st.columns(4)
     with col1:
         quality=[]
@@ -432,4 +433,8 @@ if uploaded_file is not None:
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
     st.success("Analysis successful")
+    option = st.selectbox(
+     'Which aspect you want to check',
+     ('Product quality', 'Price', 'Service quality','Delivery'))
+    st.write('You selected:', option)
     st.dataframe(pred) 
