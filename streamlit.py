@@ -433,19 +433,19 @@ if uploaded_file is not None:
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
     st.success("Analysis successful")
-    option = st.selectbox(
-     'Which aspect you want to check',
-     ('All','Product quality', 'Price', 'Service quality','Delivery'))
-    st.write('You selected:', option)
-    if (option== 'Product quality'):
-        st.dataframe(pred.loc[pred['Product quality']!="-"]) 
-    if (option== 'Price'):
-        st.dataframe(pred.loc[pred['Price']!="-"]) 
-    if (option== 'Service Quality'):
-        st.dataframe(pred.loc[pred['Service Quality']!="-"]) 
-    if (option== 'Delivery quality'):
-        st.dataframe(pred.loc[pred['Delivery quality']!="-"]) 
-    else:
-        st.dataframe(pred) 
+option = st.selectbox(
+ 'Which aspect you want to check',
+ ('All','Product quality', 'Price', 'Service quality','Delivery'))
+st.write('You selected:', option)
+if (option== 'Product quality'):
+    st.dataframe(pred.loc[pred['Product quality']!="-"]) 
+if (option== 'Price'):
+    st.dataframe(pred.loc[pred['Price']!="-"]) 
+if (option== 'Service Quality'):
+    st.dataframe(pred.loc[pred['Service Quality']!="-"]) 
+if (option== 'Delivery quality'):
+    st.dataframe(pred.loc[pred['Delivery quality']!="-"]) 
+else:
+    st.dataframe(pred) 
 
 
