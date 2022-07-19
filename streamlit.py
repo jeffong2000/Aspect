@@ -276,5 +276,6 @@ if uploaded_file is not None:
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
     st.success("Analysis successful")
+    st.dataframe(pred)
 
 
