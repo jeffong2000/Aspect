@@ -376,10 +376,11 @@ if uploaded_file is not None:
             i=i+1
         quality_polar = np.array(quality)
         print(quality_polar)
-        mylabels = ["Positive", "Negative", "Neutral"]
-        color = ["green","red","darkgrey"]
+#         mylabels = ["Positive", "Negative", "Neutral"]
+#         color = ["green","red","darkgrey"]
         plt.figure(figsize=(6,4))
-        plt.pie(quality_polar, labels = mylabels[0:len(pred["Product quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Product quality"].value_counts())-1])
+#         plt.pie(quality_polar, labels = mylabels[0:len(pred["Product quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Product quality"].value_counts())-1])
+        pred["Product quality"].apply(pd.value_counts).plt.pie(subplots=True)
         plt.title("Polarity of Product quality Aspect")
         plt.legend()
         st.set_option('deprecation.showPyplotGlobalUse', False)
