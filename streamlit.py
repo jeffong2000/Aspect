@@ -375,7 +375,8 @@ if uploaded_file is not None:
         count.plot(kind='pie',autopct='%1.2f%%',colors=[colours[key] for key in labels])
         plt.title("Polarity of Product quality Aspect")
         plt.legend()
-        plt.show()
+        st.set_option('deprecation.showPyplotGlobalUse', False)
+        st.pyplot()
     with col2:
         count= pred['Price'].value_counts().drop("-")
         colours = {'Positive': 'green', 'Negative': 'red','Neutral': 'grey'}
@@ -383,7 +384,8 @@ if uploaded_file is not None:
         count.plot(kind='pie',autopct='%1.2f%%',colors=[colours[key] for key in labels])
         plt.title("Polarity of Price Aspect")
         plt.legend()
-        plt.show()
+        st.set_option('deprecation.showPyplotGlobalUse', False)
+        st.pyplot()
     with col3: 
         count= pred['Service Quality'].value_counts().drop("-")
         colours = {'Positive': 'green', 'Negative': 'red','Neutral': 'grey'}
@@ -391,7 +393,8 @@ if uploaded_file is not None:
         count.plot(kind='pie',autopct='%1.2f%%',colors=[colours[key] for key in labels])
         plt.title("Polarity of Service Quality Aspect")
         plt.legend()
-        plt.show()
+        st.set_option('deprecation.showPyplotGlobalUse', False)
+        st.pyplot()
     with col4:
         count= pred['Delivery quality'].value_counts().drop("-")
         colours = {'Positive': 'green', 'Negative': 'red','Neutral': 'grey'}
@@ -399,7 +402,8 @@ if uploaded_file is not None:
         count.plot(kind='pie',autopct='%1.2f%%',colors=[colours[key] for key in labels])
         plt.title("Polarity of Delivery Aspect")
         plt.legend()
-        plt.show()
+        st.set_option('deprecation.showPyplotGlobalUse', False)
+        st.pyplot()
     st.success("Analysis successful")
     st.dataframe(pred)
 
