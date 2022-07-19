@@ -216,7 +216,7 @@ if btn:
                 "delivery","deliveryquality","time","deliverytime","condition","receive","received","packed","packing","package","shipping","value","price","buy","purchase","order","deal",
                 "service","staff","seller","reply","follow","followup","gift",'coordinating']):
       
-          st.subheader(i[0]+"\t|\t"+i[1])
+          st.text(i[0]+"\t|\t"+i[1])
   st.markdown("###")
   col1, col2, col3,col4 = st.columns(4)
   for res in result:
