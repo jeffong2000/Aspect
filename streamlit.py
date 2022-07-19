@@ -404,7 +404,7 @@ if uploaded_file is not None:
         plt.legend()
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
-        st.bar_chart(pred['Delivery quality'])
+        st.bar_chart(pred['Delivery quality'].value_counts())
     st.success("Analysis successful")
     st.dataframe(pred)
 
