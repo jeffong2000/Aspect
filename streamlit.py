@@ -369,70 +369,37 @@ if uploaded_file is not None:
     pred.insert(0,"Review",test.iloc[:,0].to_numpy())
     col1,col2,col3,col4 = st.columns(4)
     with col1:
-        quality=[]
-        i=0
-        while i< len(pred["Product quality"].value_counts())-1:
-            quality.append(pred["Product quality"].value_counts()[i])
-            i=i+1
-        quality_polar = np.array(quality)
-        print(quality_polar)
-#         mylabels = ["Positive", "Negative", "Neutral"]
-#         color = ["green","red","darkgrey"]
-        plt.figure(figsize=(6,4))
-#         plt.pie(quality_polar, labels = mylabels[0:len(pred["Product quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Product quality"].value_counts())-1])
-        pred["Product quality"].apply(pd.value_counts).plot.pie(subplots=True)
+        count= pred['Product quality'].value_counts().drop("-")
+        colours = {'Positive': 'green', 'Negative': 'red','Neutral': 'grey'}
+        labels = count.index.tolist()
+        count.plot(kind='pie',autopct='%1.2f%%',colors=[colours[key] for key in labels])
         plt.title("Polarity of Product quality Aspect")
         plt.legend()
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        st.pyplot()
+        plt.show()
     with col2:
-        price=[]
-        i=0
-        while i< len(pred["Price"].value_counts())-1:
-            price.append(pred["Price"].value_counts()[i])
-            i=i+1
-        price_polar = np.array(price)
-        print(price_polar)
-        mylabels = ["Positive", "Negative", "Neutral"]
-        color = ["green","red","darkgrey"]
-        plt.figure(figsize=(6,4))
-        plt.pie(price_polar, labels = mylabels[0:len(pred["Price"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Price"].value_counts())-1])
+        count= pred['Price'].value_counts().drop("-")
+        colours = {'Positive': 'green', 'Negative': 'red','Neutral': 'grey'}
+        labels = count.index.tolist()
+        count.plot(kind='pie',autopct='%1.2f%%',colors=[colours[key] for key in labels])
         plt.title("Polarity of Price Aspect")
         plt.legend()
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        st.pyplot()
+        plt.show()
     with col3: 
-        service=[]
-        i=0
-        while i< len(pred["Service Quality"].value_counts())-1:
-            service.append(pred["Service Quality"].value_counts()[i])
-            i=i+1
-        service_polar = np.array(service)
-        print(pred["Service Quality"].value_counts())
-        mylabels = ["Positive", "Negative", "Neutral"]
-        color = ["green","red","darkgrey"]
-        plt.figure(figsize=(6,4))
-        plt.pie(service_polar, labels = mylabels[0:len(pred["Service Quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Service Quality"].value_counts())-1])
-        plt.title("Polarity of Service Aspect")
+        count= pred['Service Quality'].value_counts().drop("-")
+        colours = {'Positive': 'green', 'Negative': 'red','Neutral': 'grey'}
+        labels = count.index.tolist()
+        count.plot(kind='pie',autopct='%1.2f%%',colors=[colours[key] for key in labels])
+        plt.title("Polarity of Service Quality Aspect")
         plt.legend()
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        st.pyplot()
+        plt.show()
     with col4:
-        delivery=[]
-        i=0
-        while i< len(pred["Delivery quality"].value_counts())-1:
-            delivery.append(pred["Delivery quality"].value_counts()[i])
-            i=i+1
-        delivery_polar = np.array(delivery)
-        print(delivery_polar)
-        mylabels = ["Positive", "Negative", "Neutral"]
-        color = ["green","red","darkgrey"]
-        plt.figure(figsize=(6,4))
-        plt.pie(delivery_polar, labels = mylabels[0:len(pred["Delivery quality"].value_counts())-1],autopct='%1.2f%%',colors = color[0:len(pred["Delivery quality"].value_counts())-1])
+        count= pred['Delivery quality'].value_counts().drop("-")
+        colours = {'Positive': 'green', 'Negative': 'red','Neutral': 'grey'}
+        labels = count.index.tolist()
+        count.plot(kind='pie',autopct='%1.2f%%',colors=[colours[key] for key in labels])
         plt.title("Polarity of Delivery Aspect")
         plt.legend()
-        st.set_option('deprecation.showPyplotGlobalUse', False)
-        st.pyplot()
+        plt.show()
     st.success("Analysis successful")
     st.dataframe(pred)
 
