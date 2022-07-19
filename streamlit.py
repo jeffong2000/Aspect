@@ -433,7 +433,7 @@ if uploaded_file is not None:
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.pyplot()
     st.success("Analysis successful")
-    while true:
+    while True:
         option = st.selectbox(
          'Which aspect you want to check',
          ('All','Product quality', 'Price', 'Service quality','Delivery'))
